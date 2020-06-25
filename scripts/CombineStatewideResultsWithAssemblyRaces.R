@@ -9,7 +9,7 @@ statewide <- read_csv("data/Wisconsin2018_StatewideRaces_AssemblyDistricts.csv")
 # assembly race results
 assembly <- read_csv("data/Wisconsin2018_AssemblyRaces_Summary.csv") %>%
   # match statewide format
-  rename(assembly_district = district, wsa_dem = Democrat, 
+  select(assembly_district = district, wsa_dem = Democrat, 
          wsa_rep = Republican, wsa_total = total) %>%
   mutate(assembly_district = word(assembly_district, -1))
 
