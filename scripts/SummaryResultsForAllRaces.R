@@ -23,3 +23,16 @@ all.races.summary <- read_excel(summary.path,
          candidate = str_squish(candidate))
 
 write_csv(all.races.summary, "data/Wisconsin2018_AllRaces_LongFormat.csv")
+
+# assembly races
+assembly.races <- all.races.summary %>%
+  filter(str_detect(office, "ASSEMBLY DISTRICT")) %>%
+  mutate(party = replace(party, is.na(party), "total")) %>%
+  group_by(office, party) %>%
+  summarise(votes = sum(votes)) %>%
+  ungroup() %>%
+  pivot_wider(names_from = party, values_from = votes,
+              values_fill = 0) %>%
+  mutate(district = word(office, -3)) %>%
+  select(district, total, Democrat, Republican, Independent, Libertarian, Constitution)
+write_csv(assembly.races, "data/Wisconsin2018_AssemblyRaces_Summary.csv")
