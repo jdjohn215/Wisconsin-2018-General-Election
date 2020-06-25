@@ -32,3 +32,4 @@ write_csv(ag, "data/Wisconsin2018AttorneyGeneral_ReportingUnits.csv")
 write_csv(sos, "data/Wisconsin2018SecretaryOfState_ReportingUnits.csv")
 write_csv(treasurer, "data/Wisconsin2018Treasurer_ReportingUnits.csv")
 write_csv(uss, "data/Wisconsin2018Senator_ReportingUnits.csv")
+
